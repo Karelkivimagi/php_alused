@@ -70,3 +70,37 @@ echo substr($tekst, -8, 7);		//atheist
 
 $tekst = 'All thinking men are atheists';
 print_r(str_word_count($tekst, 1));		//Array ( [0] => All [1] => thinking [2] => men [3] => are [4] => atheists )
+
+
+
+
+//Tekstist otsimine
+
+
+// Viimase osana vaatame kuidas leida tekstist teatud sõnu ning pärast seda kuidas soovitud asendada.
+// Otsimiseks strpos() funktsiooni, mis lubab meil lisada kolm parameetrit:
+
+//tekst, kust otsitakse
+//tekst, mida otsitakse
+//nihe ehk mitmendast märgist otsimist alustatakse.
+
+$tekst = 'Happiness in intelligent people is the rarest thing I know.';
+$otsitav = 'in';
+$leia_tekstist = strpos($tekst, $otsitav, 0);	//4
+echo $leia_tekstist;
+
+//Meil on siis tekst, kust otsime näiteks sõna ‘in’ ja alustame algusest. Tulemuseks saame indeksi väärtuse ‘4’, kuna ‘Happiness’ sõnas on see täitsa olemas. Kui nihet muuta, siis leiab see kenasti järgmise asukoha.
+
+...
+$leia_tekstist = strpos($tekst, $otsitav, 6);	//10
+...
+//Järgmine samm selle koodi puhul võiks olla see, et see leiab tekstist kõik otsitavad. Arvatavasti võiks kasutada selleks mingisugust tsüklit, mis väljastab soovitud indeksi ja muudab nihet. Nihke arvutamisel tuleb siis arvesse võtta juba leitud indeksi väärtust ja otsitava sõna pikkus.
+
+$tekst = 'Happiness in intelligent people is the rarest thing I know.';
+$otsitav = 'in';
+$nihe = 0;
+while($leia_tekstist = strpos($tekst, $otsitav, $nihe)){	//4 10 13 48
+    echo $leia_tekstist.'<br>';
+    $nihe = $leia_tekstist+strlen($otsitav);
+}
+//Nagu näha, leiab see kenasti kõik sõna asukohad.
