@@ -104,3 +104,48 @@ while($leia_tekstist = strpos($tekst, $otsitav, $nihe)){	//4 10 13 48
     $nihe = $leia_tekstist+strlen($otsitav);
 }
 //Nagu näha, leiab see kenasti kõik sõna asukohad.
+
+
+
+
+
+//Teksti asendamine
+
+
+//Teksti asendamiseks vaatame kahte funktsiooni. Esimesena kasutame substr_replace() funktsiooni, mis vajab nelja parameetrit:
+
+//tekst, kust otsida
+//asendatav tekst
+//arv, mis tähistab indeksit, kuhu asendatav tekst lisatakse
+//arv, mis tähistab asendatava sõna pikkuse
+//Loome lause, kus soovime asendada sõna ‘papa’ sõnaga ’emme’.
+
+$tekst = 'Pai papa, pane paadile punased purjed peale';
+$asendus = 'emme';
+$otsitav_algus = 4;
+$otsitav_pikkus = 4;
+echo substr_replace($tekst, $asendus, $otsitav_algus, $otsitav_pikkus);
+//Nagu näha määrasime koha, kuhu uus sõna läheb (4) ning mitu tähte nö. ära kustutatakse (4). Samas saab need arvud ka ju dünaamiliseks teha.
+
+$tekst = 'Pai papa, pane paadile punased purjed peale';
+$asendus = 'emme';
+$otsitav = 'papa';
+$nihe = 0;
+$asenduse_algus = strpos($tekst, $otsitav, $nihe);
+$asenduse_markide_arv = strlen($otsitav);
+echo substr_replace($tekst, $asendus, $asenduse_algus, $asenduse_markide_arv);
+//Loomulikult võid kasutada eelpool õpitud tsüklit, kui asendatavaid sõnu on tekstis rohkem. Kindla sõna asendamiseks kasutame str_replace(), mis tahab saada vähemalt kolme parameetrit:
+
+//otsitav tekst
+//asendus tekst
+//tekst, kust otsida
+$tekst = 'Musta lehma saba musta lehma taga, valge lehma saba valge lehma taga';
+$otsi = 'lehm';
+$asenda = 'koer';
+echo str_replace($otsi, $asenda, $tekst);
+//Selle funktsiooni juures on tore see, et otsitavad ja asendatavad võivad olla massiivis.
+
+$tekst = 'Musta lehma saba musta lehma taga, valge lehma saba valge lehma taga';
+$otsi = array('lehm', 'saba', 'taga');
+$asenda = array('koer', 'sarv', 'ees');
+echo str_replace($otsi, $asenda, $tekst);
