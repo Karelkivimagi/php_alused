@@ -5,5 +5,9 @@
 
 $sõna = 'stalker';
 
- echo strtoupper($sõna[0]);
 
+
+for ($indeks = 0; $indeks < strlen($sõna); $indeks++) {
+    $symbol = strtoupper($sõna[$indeks]); // teisendame täht suureks
+    echo $symbol . '.'; // väljastame koos punktiga
+}
